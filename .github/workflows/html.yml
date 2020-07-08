@@ -1,0 +1,39 @@
+name: On Push
+
+on:
+  schedule:
+    - cron: '0 */8 * * *'
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/html.yml'
+      - '.github/*.php'
+jobs:
+  Update_GH_Pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📩 Fetching Repository
+        uses: actions/checkout@v2
+      - uses: nanasess/setup-php@master
+        with:
+          php-version: '7.2'
+      - name: ⚒️Generating HTML
+        run: |
+          php .github/generate.php
+      - name: 🚀 Publishing To Github
+        run: |
+          git config --global user.email "githubactionbot@gmail.com" && git config --global user.name "GithubActionBot"
+          if [ "$(git status ./index.html --porcelain)" != "" ]; then
+            echo "👌 HTML Regenerated"
+            git add ./index.html
+            git commit -m "📖 #$GITHUB_RUN_NUMBER - HTML Updated / ⚡ Triggered By $GITHUB_SHA"
+            git push origin
+          else
+            echo "✅ Nothing To Push"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
