@@ -30,7 +30,7 @@ foreach ( $json as $head => $data ) {
   <div class="card-body text-center">
     <h5 class="card-title">{$item['name']}</h5>
     <div class="text-center">
-    <a href="{$item['ref_url']}" class="btn btn-primary">Documentation</a>
+    <a href="{$item['docs']}" class="btn btn-primary">Documentation</a>
     <a href="{$item['ref_url']}" class="btn btn-dark">Buy Now</a>
     </div>
   </div>
