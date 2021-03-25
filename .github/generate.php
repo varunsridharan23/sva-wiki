@@ -32,8 +32,8 @@ foreach ( $json as $head => $data ) {
     <h5 class="card-title">{$item['name']}</h5>
     <div class="text-center">
     <a href="{$item['docs']}" class="btn btn-primary">Documentation</a>
-    <a href="{$item['ref_url']}" class="btn btn-dark">Live Demo</a>
-    <a href="{$item['demo_site']}" class="btn btn-success">Buy Now</a>
+    <a href="{$item['demo_site']}" class="btn btn-dark">Live Demo</a>
+    <a href="{$item['ref_url']}" class="btn btn-success">Buy Now</a>
     </div>
   </div>
 </div>
